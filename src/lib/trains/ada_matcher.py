@@ -50,7 +50,7 @@ class IdentityAwareLabelAssignment(nn.Module):
         gt_box_hm[:, 0::2] = np.clip(gt_box_hm[:, 0::2], 0., hm_w - 1)
         gt_box_hm[:, 1::2] = np.clip(gt_box_hm[:, 1::2], 0., hm_h - 1)
 
-        gt_box_hm = gt_box_hm.astype(np.long)
+        gt_box_hm = gt_box_hm.astype(np.longlong)
 
         for i, box in enumerate(gt_box_hm):
             x1, x2 = box[0], box[2]
