@@ -10,12 +10,12 @@ import argparse
 import motmetrics as mm
 import numpy as np
 import torch
-import src.lib.datasets.dataset.jde as datasets
+import src.lib.datasets.dataset.ada_jde as datasets
 from src.lib.ada_opts import ada_opts
 from src.lib.tracker.ada_multitracker import AdaTracker
 from src.lib.tracking_utils import visualization as vis
 
-from src.lib.tracker.multitracker import JDETracker
+# from src.lib.tracker.multitracker import JDETracker
 from src.lib.tracking_utils.evaluation import Evaluator
 from src.lib.tracking_utils.log import logger
 from src.lib.tracking_utils.timer import Timer
@@ -119,7 +119,7 @@ def eval_seq(opt, dataloader, data_type, result_filename, save_dir=None, show_im
 def main(opt, data_root='/data/MOT16/train', det_root=None, seqs=('MOT16-05',), exp_name='demo',
          save_images=False, save_videos=False, show_image=True):
     logger.setLevel(logging.INFO)
-    result_root = os.path.join(data_root, '..', 'results', exp_name)
+    result_root = os.path.join('./exp', 'track', exp_name)
     mkdir_if_missing(result_root)
     data_type = 'mot'
 
@@ -169,7 +169,7 @@ def main(opt, data_root='/data/MOT16/train', det_root=None, seqs=('MOT16-05',), 
 
 
 if __name__ == '__main__':
-    os.environ['CUDA_VISIBLE_DEVICES'] = '1'
+    # os.environ['CUDA_VISIBLE_DEVICES'] = '1'
     opt = ada_opts().init()
 
     if not opt.val_mot16:
@@ -264,11 +264,12 @@ if __name__ == '__main__':
                     '''
         data_root = os.path.join(opt.data_dir, 'MOT20/images/test')
     seqs = [seq.strip() for seq in seqs_str.split()]
+    exp_name = 'default' if opt.exp_id == '' else opt.exp_id
 
     main(opt,
          data_root=data_root,
          seqs=seqs,
-         exp_name='MOT_17_test',
-         show_image=True,
+         exp_name=exp_name,
+         show_image=False,
          save_images=False,
          save_videos=False)

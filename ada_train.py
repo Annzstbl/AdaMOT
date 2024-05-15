@@ -37,7 +37,7 @@ def main(opt):
     '''
         Dataset: JointDataset
     '''
-    from src.lib.datasets.dataset.jde import JointDataset
+    # from src.lib.datasets.dataset.jde import JointDataset
     # dataset: JointDataset
     dataset = Dataset(opt, dataset_root, trainset_paths, (1088, 608), augment=True, transforms=transforms)
     opt = ada_opts().update_dataset_info_and_set_heads(opt, dataset)
@@ -45,7 +45,7 @@ def main(opt):
 
     logger = Logger(opt)
 
-    os.environ['CUDA_VISIBLE_DEVICES'] = opt.gpus_str
+    # os.environ['CUDA_VISIBLE_DEVICES'] = opt.gpus_str
     opt.device = torch.device('cuda:{}'.format(opt.gpus[0]) if opt.gpus[0] >= 0 else 'cpu')
 
     print('Creating model...')
@@ -164,20 +164,25 @@ def _load_model(model, model_path, optimizer=None, resume=False,
           'pre-trained weight. Please make sure ' + \
           'you have correctly specified --arch xxx ' + \
           'or set the correct --num_classes for your own dataset.'
+    import copy
+    rename_state_dict = copy.deepcopy(state_dict)
     for k in state_dict:
-        if k in model_state_dict:
-            if state_dict[k].shape != model_state_dict[k].shape:
+        k_backbone = 'backbone.' + k# 两者相差一个backbone.
+        if k_backbone in model_state_dict:
+            if state_dict[k].shape != model_state_dict[k_backbone].shape:
                 print('Skip loading parameter {}, required shape{}, ' \
                       'loaded shape{}. {}'.format(
-                    k, model_state_dict[k].shape, state_dict[k].shape, msg))
-                state_dict[k] = model_state_dict[k]
+                    k, model_state_dict[k_backbone].shape, state_dict[k].shape, msg))
+                rename_state_dict[k] = model_state_dict[k_backbone]
+            else:
+                rename_state_dict[k_backbone] = state_dict[k]
         else:
             print('Drop parameter {}.'.format(k) + msg)
     for k in model_state_dict:
-        if not (k in state_dict):
+        if not (k in rename_state_dict):
             print('No param {}.'.format(k) + msg)
-            state_dict[k] = model_state_dict[k]
-    model.load_state_dict(state_dict, strict=False)
+            rename_state_dict[k] = model_state_dict[k]
+    model.load_state_dict(rename_state_dict, strict=False)
 
     # resume optimizer parameters
     if optimizer is not None and resume:
@@ -229,6 +234,6 @@ def _load_model(model, model_path, optimizer=None, resume=False,
 
 
 if __name__ == '__main__':
-    os.environ['CUDA_VISIBLE_DEVICES'] = '0,1,2,3'
+    # os.environ['CUDA_VISIBLE_DEVICES'] = '0,1,2,3'
     opt = ada_opts().parse()
     main(opt)

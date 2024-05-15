@@ -13,7 +13,7 @@ import torch.nn.functional as F
 import torch.utils.model_zoo as model_zoo
 
 # from dcn_v2 import DCN
-from src.lib.DCN import DCN
+from dcn_v2 import DCN
 
 BN_MOMENTUM = 0.1
 logger = logging.getLogger(__name__)
@@ -444,12 +444,12 @@ class DLASeg(nn.Module):
     def forward(self, x):
         x = self.base(x)
 
-        for i in x:
-            print(i.shape)
-        print('------------------')
+        # for i in x:
+        #     print(i.shape)
+        # print('------------------')
         x = self.dla_up(x)
-        for i in x:
-            print(i.shape)
+        # for i in x:
+        #     print(i.shape)
 
         y = []
         for i in range(self.last_level - self.first_level):

@@ -2,14 +2,14 @@
     "root":"/data3/publicData/MOT",
     "train":
     {
-        "mot17":"./data/mot17.half"
+        "mot17":"./src/data/mot17.half"
     },
     "test_emb":
     {
-        "mot17":"./data/mot17.emb"
+        "mot17":"./src/data/mot17.emb"
     },
     "test":
     {
-        "mot17":"./data/mot17.val"
+        "mot17":"./src/data/mot17.val"
     }
 }

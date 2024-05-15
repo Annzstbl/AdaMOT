@@ -2,14 +2,14 @@
     "root":"/data3/publicData/MOT",
     "train":
     {
-        "mot20":"./data/mot20.train"
+        "mot20":"./src/data/mot20.train"
     },
     "test_emb":
     {
-        "mot20":"./data/mot20.train"
+        "mot20":"./src/data/mot20.train"
     },
     "test":
     {
-        "mot20":"./data/mot20.train"
+        "mot20":"./src/data/mot20.train"
     }
 }

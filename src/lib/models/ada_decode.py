@@ -4,7 +4,6 @@ from __future__ import print_function
 
 import torch
 import torch.nn as nn
-from pt_soft_nms import soft_nms
 
 from .utils import _gather_feat, _tranpose_and_gather_feat
 

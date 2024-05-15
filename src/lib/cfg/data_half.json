@@ -2,12 +2,12 @@
     "root":"/data3/publicData/MOT",
     "train":
     {
-        "mot17":"./data/mot17.half",
-        "caltech":"./data/caltech.all",
-        "citypersons":"./data/citypersons.train",
-        "cuhksysu":"./data/cuhksysu.train",
-        "prw":"./data/prw.train",
-        "eth":"./data/eth.train"
+        "mot17":"./src/data/mot17.half",
+        "caltech":"./src/data/caltech.all",
+        "citypersons":"./src/data/citypersons.train",
+        "cuhksysu":"./src/data/cuhksysu.train",
+        "prw":"./src/data/prw.train",
+        "eth":"./src/data/eth.train"
     },
     "test_emb":
     {
