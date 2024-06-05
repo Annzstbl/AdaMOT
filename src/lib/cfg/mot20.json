@@ -1,5 +1,5 @@
 {
-    "root":"/data3/publicData/MOT",
+    "root":"/root/autodl-tmp",
     "train":
     {
         "mot20":"./src/data/mot20.train"

@@ -1,5 +1,5 @@
 {
-    "root":"/data3/publicData/MOT",
+    "root":"/root/autodl-tmp",
     "train":
     {
         "crowdhuman_train":"./src/data/crowdhuman.train",

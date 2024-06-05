@@ -49,13 +49,13 @@ def gen_labels_crowd(data_root, label_root, ann_root):
 
 
 if __name__ == '__main__':
-    '/home/allen/data/datasets/mot/JDE/crowdhuman'
-    data_val = '/home/allen/data/datasets/mot/JDE/crowdhuman/images/val'
-    label_val = '/home/allen/data/datasets/mot/JDE/crowdhuman/labels_with_ids/val'
-    ann_val = '/home/allen/data/datasets/mot/JDE/crowdhuman/annotation_val.odgt'
-    data_train = '/home/allen/data/datasets/mot/JDE/crowdhuman/images/train'
-    label_train = '/home/allen/data/datasets/mot/JDE/crowdhuman/labels_with_ids/train'
-    ann_train = '/home/allen/data/datasets/mot/JDE/crowdhuman/annotation_train.odgt'
+    '/root/autodl-tmp/crowdhuman'
+    data_val = '/root/autodl-tmp/crowdhuman/images/val'
+    label_val = '/root/autodl-tmp/crowdhuman/labels_with_ids/val'
+    ann_val = '/root/autodl-tmp/crowdhuman/annotation_val.odgt'
+    data_train = '/root/autodl-tmp/crowdhuman/images/train'
+    label_train = '/root/autodl-tmp/crowdhuman/labels_with_ids/train'
+    ann_train = '/root/autodl-tmp/crowdhuman/annotation_train.odgt'
     gen_labels_crowd(data_train, label_train, ann_train)
     gen_labels_crowd(data_val, label_val, ann_val)
 
